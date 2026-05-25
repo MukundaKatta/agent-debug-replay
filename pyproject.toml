@@ -1,64 +1,22 @@
 [build-system]
-requires = ["hatchling>=1.24"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
 
 [project]
 name = "agent-debug-replay"
 version = "0.1.0"
-description = "Whole-run replay for agent step-log JSONL files. Walk steps, edit one and see downstream marked stale, diff two runs field-by-field, filter, replay_through. Immutable Replayer. Zero runtime deps."
+description = "Step-through replay of JSONL agent run traces"
 readme = "README.md"
+license = {text = "MIT"}
 requires-python = ">=3.10"
-license = { text = "MIT" }
-authors = [{ name = "Mukunda Rao Katta", email = "mukunda.vjcs6@gmail.com" }]
-keywords = [
-  "llm",
-  "ai",
-  "agent",
-  "debug",
-  "replay",
-  "jsonl",
-  "observability",
-]
+keywords = ["llm", "agent", "debug", "replay", "trace", "jsonl"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
-  "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14",
-  "Topic :: Software Development :: Libraries :: Python Modules",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Debuggers",
 ]
-dependencies = []
 
-[project.optional-dependencies]
-dev = ["pytest>=8.0", "ruff>=0.4"]
-
-[project.urls]
-Homepage = "https://github.com/MukundaKatta/agent-debug-replay"
-Issues = "https://github.com/MukundaKatta/agent-debug-replay/issues"
-Source = "https://github.com/MukundaKatta/agent-debug-replay"
-"Sibling: agent-step-log" = "https://github.com/MukundaKatta/agent-step-log"
-"Sibling: llm-fixture-replay" = "https://github.com/MukundaKatta/llm-fixture-replay"
-"Sibling: agentsnap" = "https://github.com/MukundaKatta/agentsnap"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/agent_debug_replay"]
-
-[tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/README.md", "/LICENSE"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["src"]
-
-[tool.ruff]
-target-version = "py310"
-line-length = 100
-
-[tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B", "SIM"]
+[tool.setuptools.packages.find]
+where = ["src"]
